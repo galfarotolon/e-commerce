@@ -1,0 +1,22 @@
+{
+  "name": "e-store",
+  "version": "1.0.0",
+  "description": "MERN app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galfarotolon/e-commerce.git"
+  },
+  "author": "Guillermo Alfaro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/galfarotolon/e-commerce/issues"
+  },
+  "homepage": "https://github.com/galfarotolon/e-commerce#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
