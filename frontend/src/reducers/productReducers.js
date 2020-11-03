@@ -23,6 +23,8 @@ export const productDetailsReducer = (state = { product: { reviews: [] } }, acti
             return { loading: false, product: action.payload }
         case PRODUCT_DETAILS_FAIL:
             return { loading: false, error: action.payload }
+        case PRODUCT_DETAILS_RESET:
+            return {}
         default:
             return state
     }
@@ -37,8 +39,6 @@ export const productDeleteReducer = (state = {}, action) => {
             return { loading: false, success: true }
         case PRODUCT_DELETE_FAIL:
             return { loading: false, error: action.payload }
-        case PRODUCT_DETAILS_RESET:
-            return { product: { reviews: [] } }
 
         default:
             return state
