@@ -27,20 +27,39 @@ const UserEditScreen = ({ match, history }) => {
         success: successUpdate,
     } = userUpdate
 
+    // useEffect(() => {
+    //     if (successUpdate) {
+    //         dispatch({ type: USER_UPDATE_RESET })
+    //         history.push('/admin/userlist')
+    //     } else {
+    //         if (!user.name || user._id !== userId) {
+    //             dispatch(getUserDetails(userId))
+    //         } else {
+    //             setName(user.name)
+    //             setEmail(user.email)
+    //             setIsAdmin(user.isAdmin)
+    //         }
+    //     }
+    // }, [dispatch, history, userId, user, successUpdate])
+
     useEffect(() => {
-        if (successUpdate) {
-            dispatch({ type: USER_UPDATE_RESET })
-            history.push('/admin/userlist')
+        if (!user || !user.isAdmin) {
+            history.push('/login');
         } else {
-            if (!user.name || user._id !== userId) {
-                dispatch(getUserDetails(userId))
+            if (successUpdate) {
+                dispatch({ type: USER_UPDATE_RESET });
+                history.push('/admin/userlist');
             } else {
-                setName(user.name)
-                setEmail(user.email)
-                setIsAdmin(user.isAdmin)
+                if (!user.name || userId !== user._id) {
+                    dispatch(getUserDetails(userId));
+                } else {
+                    setName(user.name);
+                    setEmail(user.email);
+                    setIsAdmin(user.isAdmin);
+                }
             }
         }
-    }, [dispatch, history, userId, user, successUpdate])
+    }, [dispatch, history, user, userId, successUpdate]);
 
     const submitHandler = (e) => {
         e.preventDefault()
