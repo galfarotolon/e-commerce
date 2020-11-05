@@ -167,4 +167,19 @@ const reviewProduct = asyncHandler(async (req, res) => {
 
 })
 
-export { getProducts, getProductById, deleteProduct, updateProduct, createProduct, reviewProduct }
+
+// @desc Get top rated products
+// @route GET /api/products/top
+// @access Public
+
+const getTopProducts = asyncHandler(async (req, res) => {
+    //rating is -1 because its ascending order, limit to get the first 5
+    const products = await Product.find({}).sort({ rating: -1 }).limit(5)
+
+    res.json(products)
+
+
+
+})
+
+export { getProducts, getProductById, deleteProduct, updateProduct, createProduct, reviewProduct, getTopProducts }
