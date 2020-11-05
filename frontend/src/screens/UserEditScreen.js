@@ -27,39 +27,39 @@ const UserEditScreen = ({ match, history }) => {
         success: successUpdate,
     } = userUpdate
 
-    // useEffect(() => {
-    //     if (successUpdate) {
-    //         dispatch({ type: USER_UPDATE_RESET })
-    //         history.push('/admin/userlist')
-    //     } else {
-    //         if (!user.name || user._id !== userId) {
-    //             dispatch(getUserDetails(userId))
-    //         } else {
-    //             setName(user.name)
-    //             setEmail(user.email)
-    //             setIsAdmin(user.isAdmin)
-    //         }
-    //     }
-    // }, [dispatch, history, userId, user, successUpdate])
-
     useEffect(() => {
-        if (!user || !user.isAdmin) {
-            history.push('/login');
+        if (successUpdate) {
+            dispatch({ type: USER_UPDATE_RESET })
+            history.push('/admin/userlist')
         } else {
-            if (successUpdate) {
-                dispatch({ type: USER_UPDATE_RESET });
-                history.push('/admin/userlist');
+            if (!user.name || user._id !== userId) {
+                dispatch(getUserDetails(userId))
             } else {
-                if (!user.name || userId !== user._id) {
-                    dispatch(getUserDetails(userId));
-                } else {
-                    setName(user.name);
-                    setEmail(user.email);
-                    setIsAdmin(user.isAdmin);
-                }
+                setName(user.name)
+                setEmail(user.email)
+                setIsAdmin(user.isAdmin)
             }
         }
-    }, [dispatch, history, user, userId, successUpdate]);
+    }, [dispatch, history, userId, user, successUpdate])
+
+    // useEffect(() => {
+    //     if (!user || !user.isAdmin) {
+    //         history.push('/login');
+    //     } else {
+    //         if (successUpdate) {
+    //             dispatch({ type: USER_UPDATE_RESET });
+    //             history.push('/admin/userlist');
+    //         } else {
+    //             if (!user.name || userId !== user._id) {
+    //                 dispatch(getUserDetails(userId));
+    //             } else {
+    //                 setName(user.name);
+    //                 setEmail(user.email);
+    //                 setIsAdmin(user.isAdmin);
+    //             }
+    //         }
+    //     }
+    // }, [dispatch, history, user, userId, successUpdate]);
 
     const submitHandler = (e) => {
         e.preventDefault()
