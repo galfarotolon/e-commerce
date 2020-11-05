@@ -86,7 +86,7 @@ const OrderScreen = ({ match, history }) => {
         }
 
 
-    }, [order, orderId, successPay, successDeliver, dispatch])
+    }, [order, orderId, successPay, successDeliver, dispatch, userInfo, history])
 
     //payment result from paypal api
     const successPaymentHandler = (paymentResult) => {
