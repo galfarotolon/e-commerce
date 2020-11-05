@@ -7,7 +7,9 @@ import Loader from '../components/Loader'
 import { listProducts } from '../actions/productActions'
 
 
-function HomeScreen() {
+function HomeScreen({ match }) {
+
+    const keyword = match.params.keyword
 
     const dispatch = useDispatch()
 
@@ -15,8 +17,8 @@ function HomeScreen() {
     const { loading, error, products } = productList
 
     useEffect(() => {
-        dispatch(listProducts())
-    }, [dispatch])
+        dispatch(listProducts(keyword))
+    }, [dispatch, keyword])
 
 
     return (
